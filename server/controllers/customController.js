@@ -1,3 +1,5 @@
+const Customer = require('../models/customer');
+const mongoose = require('mongoose');
 
 // Get Homepage
 
@@ -27,10 +29,22 @@ exports.postCustomer = async (req, res) => {
 
     console.log(req.body);
 
-    const locals = {
-        title: 'New Customer Added',
-        description: 'Free Nodejs User Management System'
+    const newCustomer = new Customer({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        details: req.body.details,
+        tel: req.body.tel,
+        email: req.body.email
+    })
+
+   
+    
+    try {
+        await Customer.create(newCustomer); 
+
+        res.redirect('/');
+    } catch (error) {
+        console.log(error);
     }
 
-    res.render('customer/add', locals);
 }

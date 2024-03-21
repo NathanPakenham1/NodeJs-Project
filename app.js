@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const { flash } = require('express-flash-messages');
+const session = require('express-session');
 const connectDB = require('./server/config/db');
 
 const app = express();
