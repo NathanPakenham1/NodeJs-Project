@@ -17,16 +17,13 @@ app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
-// Home
-app.get('/', (req, res) => {
+// Routes
+app.use('/', require('./server/routes/customer'));
 
-    const locals = {
-        title: 'Nodejs',
-        description: 'Free Nodejs User Management System'
-    }
-
-    res.render('index', locals);
-});
+// Handle 404
+app.get('*', (req, res) => {
+    res.status(404).render('404');
+})
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
