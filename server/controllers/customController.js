@@ -5,17 +5,38 @@ const mongoose = require('mongoose');
 
 
 
+// exports.homepage = async (req, res) => {
+//     try {
+//         const message = req.flash('info'); // Retrieve flash m
+
+//         const locals = {
+//             title: 'Nodejs',
+//             description: 'Free Nodejs User Management System'
+//         };
+
+//         const customers = await Customer.find({}).limit(22);
+//         res.render('index', { locals, messages: message, customers }); // Pass messages to the view
+//     } catch (error) {
+//         console.error(error);
+//         req.flash('error', 'An error occurred while loading the homepage.'); // Flash error message
+//         res.redirect('/'); // Redirect to homepage or handle error appropriately
+//     }
+// };
+
+
 exports.homepage = async (req, res) => {
+    const message = await req.flash('info'); // Retrieve flash m
+
+    const locals = {
+        title: 'Nodejs',
+        description: 'Free Nodejs User Management System'
+    };
+
+    let perPage = 12;
+    let page = req.query.page || 1;
+
     try {
-        const message = req.flash('info'); // Retrieve flash m
-
-        const locals = {
-            title: 'Nodejs',
-            description: 'Free Nodejs User Management System'
-        };
-
-        const customers = await Customer.find({}).limit(22);
-        res.render('index', { locals, messages: message, customers }); // Pass messages to the view
+     const customers = await
     } catch (error) {
         console.error(error);
         req.flash('error', 'An error occurred while loading the homepage.'); // Flash error message
